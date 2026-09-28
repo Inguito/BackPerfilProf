@@ -1,9 +1,9 @@
 // Configurar CORS: En app.js / server.js, permite las peticiones desde el dominio 
 // donde desplegarás el frontend (Vercel/Netlify):
-const cors = require('cors');
-app.use(cors({
-  origin: process.env.FRONTEND_URL || '*'
-}));
+// const cors = require('cors');
+// app.use(cors({
+//   origin: process.env.FRONTEND_URL || '*'
+// }));
 
 // Antes del deployado, asegúrate de configurar
 //  las variables de entorno en tu plataforma 
@@ -20,6 +20,8 @@ require('dotenv').config();
 
 const app = express();
 const PORT = process.env.PORT || 3000;
+// cors es una librería que permite controlar 
+// el acceso a recursos desde diferentes dominios.
 
 app.use(cors());
 app.use(express.json());
