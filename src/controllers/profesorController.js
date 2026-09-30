@@ -122,3 +122,87 @@ exports.deleteProfesor = async (req, res) => {
     return res.status(500).json({ success: false, message: error.message });
   }
 };
+
+// Para las rutas de TituloNomenclador, 
+// puedes agregar funciones similares a las anteriores
+//  para manejar la creación, actualización, 
+// eliminación y obtención de títulos. 
+// Aquí hay un ejemplo de cómo podrías estructurarlas:
+// GET /api/v1/profesores/titulos 
+exports.getAllTitulosNomenclador = async (req, res) => {
+  try {
+    const titulos = await TituloNomenclador.findAll();
+    return res.status(200).json({ success: true, data: titulos });
+  } catch (error) {
+    return res.status(500).json({ success: false, message: error.message });
+  }
+};
+
+// GET /api/v1/profesores/titulos/:id
+exports.getTituloNomencladorById = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const titulo = await TituloNomenclador.findByPk(id);
+
+    if (!titulo) {
+      return res.status(404).json({ success: false, message: 'Título no encontrado' });
+    }
+
+    return res.status(200).json({ success: true, data: titulo });
+  } catch (error) {
+    return res.status(500).json({ success: false, message: error.message });
+  }
+};  
+
+// POST /api/v1/profesores/titulos
+exports.createTituloNomenclador = async (req, res) => {
+  try {
+    const { codigo, nombreTitulo, nivelEducativo, incumbenciaGeneral } = req.body;
+    const nuevoTitulo = await TituloNomenclador.create({
+      codigo,
+      nombreTitulo,
+      nivelEducativo,
+      incumbenciaGeneral
+    });
+
+    return res.status(201).json({ success: true, data: nuevoTitulo });
+  } catch (error) {
+    return res.status(400).json({ success: false, message: error.message });
+  }
+};
+
+// PUT /api/v1/profesores/titulos/:id   
+exports.updateTituloNomenclador = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const titulo = await TituloNomenclador.findByPk(id);
+
+    if (!titulo) {
+      return res.status(404).json({ success: false, message: 'Título no encontrado' });
+    }
+
+    await titulo.update(req.body);
+    return res.status(200).json({ success: true, data: titulo });
+  } catch (error) {
+    return res.status(400).json({ success: false, message: error.message });
+  }
+};
+
+// DELETE /api/v1/profesores/titulos/:id
+exports.deleteTituloNomenclador = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const titulo = await TituloNomenclador.findByPk(id);
+
+    if (!titulo) {
+      return res.status(404).json({ success: false, message: 'Título no encontrado' });
+    }
+    await titulo.destroy();
+   return res.status(200).json({ success: true, message: 'Título eliminado correctamente' });
+  } catch (error) {
+    return res.status(500).json({ success: false, message: error.message });
+  }
+};
+
+
+    
