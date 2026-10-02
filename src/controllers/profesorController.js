@@ -171,22 +171,67 @@ exports.createTituloNomenclador = async (req, res) => {
   }
 };
 
-// PUT /api/v1/profesores/titulos/:id   
+// PUT /api/v1/titulos/:id   
+
+// exports.updateTituloNomenclador = async (req, res) => {
+//   try {
+//     const { id } = req.params;
+//     const titulo = await TituloNomenclador.findByPk(id);
+
+//     if (!titulo) {
+//       return res.status(404).json({ success: false, message: 'Título no encontrado' });
+//     }
+
+//     await titulo.update(req.body);
+//     return res.status(200).json({ success: true, data: titulo });
+//   } catch (error) {
+//     return res.status(400).json({ success: false, message: error.message });
+//   }
+// };
+
 exports.updateTituloNomenclador = async (req, res) => {
   try {
-    const { id } = req.params;
-    const titulo = await TituloNomenclador.findByPk(id);
+    const { id } = req.params;          // ID actual (ej: /titulos/1)
+    const { nuevoId } = req.body;        // Nuevo ID deseado (ej: { "nuevoId": 5 })
 
+    if (!nuevoId) {
+      return res.status(400).json({ 
+        success: false, 
+        message: 'Debe proporcionar el nuevoId en el cuerpo de la solicitud' 
+      });
+    }
+
+    // Buscar si existe el título a modificar
+    const titulo = await TituloNomenclador.findByPk(id);
     if (!titulo) {
       return res.status(404).json({ success: false, message: 'Título no encontrado' });
     }
 
-    await titulo.update(req.body);
-    return res.status(200).json({ success: true, data: titulo });
+    // Verificar que el nuevo ID no esté ocupado
+    const existeId = await TituloNomenclador.findByPk(nuevoId);
+    if (existeId) {
+      return res.status(400).json({ 
+        success: false, 
+        message: `El ID ${nuevoId} ya está en uso por otro registro.` 
+      });
+    }
+
+    // Actualizar el ID directamente en la base de datos
+    await TituloNomenclador.update(
+      { id: nuevoId },
+      { where: { id } }
+    );
+
+    // Obtener el registro actualizado con el nuevo ID
+    const tituloActualizado = await TituloNomenclador.findByPk(nuevoId);
+
+    return res.status(200).json({ success: true, data: tituloActualizado });
   } catch (error) {
     return res.status(400).json({ success: false, message: error.message });
   }
 };
+
+
 
 // DELETE /api/v1/profesores/titulos/:id
 exports.deleteTituloNomenclador = async (req, res) => {
