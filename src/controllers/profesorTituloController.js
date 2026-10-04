@@ -21,8 +21,14 @@ exports.getAllProfesorTitulos = async (req, res) => {
 // Crea un nuevo profesorTitulo
 exports.createProfesorTitulo = async (req, res) => {
   try {
-    const { profesor_id, titulo_nomenclador_id, institucionEmisora, anoEgreso } = req.body;
-    const newProfesorTitulo = await ProfesorTitulo.create({ profesor_id, titulo_nomenclador_id, institucionEmisora, anoEgreso });
+    const { id, profesor_id, titulo_nomenclador_id, institucionEmisora, anoEgreso } = req.body;
+    const newProfesorTitulo = await ProfesorTitulo.create({ 
+      id,
+      profesor_id, 
+      titulo_nomenclador_id, 
+      institucionEmisora, 
+      anoEgreso 
+    });
     return res.status(201).json({ success: true, data: newProfesorTitulo });
   } catch (error) {
     return res.status(500).json({ success: false, message: error.message });
