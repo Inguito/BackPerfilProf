@@ -130,7 +130,7 @@ const { Profesor, TituloNomenclador, Capacitacion, Experiencia,
 // eliminación y obtención de títulos. 
 // Aquí hay un ejemplo de cómo podrías estructurarlas:
 
-// GET /api/v1/profesores/titulos 
+// GET /api/v1/titulos 
 exports.getAllTitulosNomenclador = async (req, res) => {
   try {
     const titulos = await TituloNomenclador.findAll();

@@ -6,12 +6,14 @@ const { Profesor, TituloNomenclador, Capacitacion, Experiencia,
 // Trae todos los profesorTitulos
 exports.getAllProfesorTitulos = async (req, res) => {
   try {
-    const profesorTitulos = await ProfesorTitulo.findAll({
-      include: [
-        { model: Profesor },
-        { model: TituloNomenclador }
-      ]
-    });
+    const profesorTitulos = await ProfesorTitulo.findAll(
+    //   {
+    //   include: [
+    //     { model: Profesor },
+    //     { model: TituloNomenclador }
+    //   ]
+    // }
+    );
     return res.status(200).json({ success: true, data: profesorTitulos });
   } catch (error) { return res.status(500).json({ success: false, message: error.message });
   }
