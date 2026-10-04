@@ -17,6 +17,8 @@ const cors = require('cors');
 const { sequelize } = require('./models');
 const tituloRoutes = require('./routes/tituloRoutes');
 const profesorRoutes = require('./routes/profesorRoutes');
+const profesorTituloRoutes = require('./routes/profesorTituloRoutes');
+
 require('dotenv').config();
 
 const app = express();
@@ -31,6 +33,9 @@ app.use(express.json());
 
 app.use('/api/v1/profesores', profesorRoutes);
 app.use('/api/v1/titulos', tituloRoutes);
+app.use('/api/v1/profesorTitulos', profesorTituloRoutes);
+
+
 
 app.get('/', (req, res) => {
   res.json({ message: 'API RESTful - Sistema Docente y Oferta Curricular Activa' });
