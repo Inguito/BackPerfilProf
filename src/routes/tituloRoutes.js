@@ -1,11 +1,11 @@
 const express = require('express');
 const router = express.Router();
-const profesorController = require('../controllers/profesorController');
+const tituloController = require('../controllers/tituloController');
 
-router.get('/', profesorController.getAllTitulosNomenclador);
-router.post('/', profesorController.createTituloNomenclador);
-router.get('/:id', profesorController.getTituloNomencladorById);
-router.put('/:id', profesorController.updateTituloNomenclador);
-router.delete('/:id', profesorController.deleteTituloNomenclador);
+router.get('/', tituloController.getAllTitulosNomenclador);
+router.post('/', tituloController.createTituloNomenclador);
+router.get('/:id', tituloController.getTituloNomencladorById);
+router.put('/:id', tituloController.updateTituloNomenclador);
+router.delete('/:id', tituloController.deleteTituloNomenclador);
 
 module.exports = router;
