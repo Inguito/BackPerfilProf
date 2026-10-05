@@ -19,6 +19,7 @@ const tituloRoutes = require('./routes/tituloRoutes');
 const profesorRoutes = require('./routes/profesorRoutes');
 const profesorTituloRoutes = require('./routes/profesorTituloRoutes');
 const habilitacionRoutes = require('./routes/habilitacionRoutes');
+const espacioCurricularRoutes = require('./routes/espacioCurricularRoutes');
 
 require('dotenv').config();
 
@@ -36,7 +37,7 @@ app.use('/api/v1/profesores', profesorRoutes);
 app.use('/api/v1/titulos', tituloRoutes);
 app.use('/api/v1/profesorTitulos', profesorTituloRoutes);
 app.use('/api/v1/habilitaciones', habilitacionRoutes);
-app.use('/api/v1/espaciosCurriculares', require('./routes/espacioCurricularRoutes'));
+app.use('/api/v1/espaciosCurriculares', espacioCurricularRoutes);
 
 
 

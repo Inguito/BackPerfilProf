@@ -16,6 +16,7 @@ exports.getAllEspaciosCurriculares = async (req, res) => {
 exports.createEspacioCurricular = async (req, res) => { 
   try {
     const { 
+      id,
       codigoAsignatura, 
       nombreEspacio,
       anoCursado,
@@ -24,6 +25,7 @@ exports.createEspacioCurricular = async (req, res) => {
       cargaHorariaTotal
     } = req.body;
     const newEspacioCurricular = await EspacioCurricular.create({ 
+      id,
       codigoAsignatura,
       nombreEspacio,
       anoCursado,
