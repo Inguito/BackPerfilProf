@@ -36,6 +36,8 @@ app.use('/api/v1/profesores', profesorRoutes);
 app.use('/api/v1/titulos', tituloRoutes);
 app.use('/api/v1/profesorTitulos', profesorTituloRoutes);
 app.use('/api/v1/habilitaciones', habilitacionRoutes);
+app.use('/api/v1/espaciosCurriculares', require('./routes/espacioCurricularRoutes'));
+
 
 
 

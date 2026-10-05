@@ -23,12 +23,22 @@ exports.getAllHabilitaciones = async (req, res) => {
 
 exports.createHabilitacion = async (req, res) => {
   try {
-    const { titulo_nomenclador_id, espacio_curricular_id, tipoHabilitacion } = req.body;
-    const newHabilitacion = await Habilitacion.create({ titulo_nomenclador_id, espacio_curricular_id, tipoHabilitacion });
-    return res.status(201).json({ success: true, data: newHabilitacion });
+    const { 
+      titulo_nomenclador_id, 
+      espacio_curricular_id, 
+      tipoHabilitacion 
+    } = req.body;
+    const newHabilitacion = await Habilitacion.create({ 
+      titulo_nomenclador_id, 
+      espacio_curricular_id, 
+      tipoHabilitacion 
+    });
+    return res.status(201).json({ success: true, 
+      data: newHabilitacion });
   }
   catch (error) {
-    return res.status(500).json({ success: false, message: error.message });
+    return res.status(500).json({ success: false, 
+      message: error.message });
   }
 }
 
