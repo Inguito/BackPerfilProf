@@ -34,6 +34,8 @@ app.use(express.json());
 app.use('/api/v1/profesores', profesorRoutes);
 app.use('/api/v1/titulos', tituloRoutes);
 app.use('/api/v1/profesorTitulos', profesorTituloRoutes);
+app.use('/api/v1/habilitaciones', require('./routes/habilitacionRoutes'));
+
 
 
 

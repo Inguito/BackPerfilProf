@@ -23,7 +23,13 @@ exports.getAllProfesorTitulos = async (req, res) => {
 // Crea un nuevo profesorTitulo
 exports.createProfesorTitulo = async (req, res) => {
   try {
-    const { id, profesor_id, titulo_nomenclador_id, institucionEmisora, anoEgreso } = req.body;
+    const { 
+      id, 
+      profesor_id, 
+      titulo_nomenclador_id, 
+      institucionEmisora, 
+      anoEgreso 
+    } = req.body;
     const newProfesorTitulo = await ProfesorTitulo.create({ 
       id,
       profesor_id, 
