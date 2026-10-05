@@ -1,5 +1,5 @@
 const { Profesor, TituloNomenclador, Capacitacion, Experiencia, 
-  EspacioCurricular, Habilitacion, EspacioCurricular } = require('../models');
+  EspacioCurricular, Habilitacion } = require('../models');
 
 // Trae todas los espacios curriculares
 // GET /api/v1/espaciosCurriculares
