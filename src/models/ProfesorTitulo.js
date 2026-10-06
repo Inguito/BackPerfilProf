@@ -18,7 +18,7 @@ const ProfesorTitulo = sequelize.define('ProfesorTitulo', {
   }
 }, {
   tableName: 'profesores_titulos'
-  // timestamps: true,
+   timestamps: false,
   // underscored: true // Mantiene el naming snake_case para las columnas de BD
 });
 
