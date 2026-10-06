@@ -65,60 +65,60 @@ exports.getProfesorTituloById = async (req, res) => {
   }
 };  
 
-//PUT /api/v1/profesorTitulo/:id
-// Actualiza un profesorTitulo por id
-// exports.updateProfesorTitulo = async (req, res) => {
-//   try {
-//     const { id } = req.params;
-//     const { institucionEmisora, anoEgreso } = req.body;
-
-//     const profesorTitulo = await ProfesorTitulo.findByPk(id);
-//     if (!profesorTitulo) {
-//       return res.status(404).json({ success: false, message: 'ProfesorTitulo no encontrado' });
-//     }
-
-//     profesorTitulo.institucionEmisora = institucionEmisora;
-//     profesorTitulo.anoEgreso = anoEgreso;
-//     await profesorTitulo.save();
-
-//     return res.status(200).json({ success: true, data: profesorTitulo });
-//   } catch (error) {
-//     return res.status(500).json({ success: false, message: error.message });
-//   }
-// };
-
+PUT /api/v1/profesorTitulo/:id
+Actualiza un profesorTitulo por id
 exports.updateProfesorTitulo = async (req, res) => {
   try {
     const { id } = req.params;
-    const { 
-      profesor_id, 
-      titulo_nomenclador_id, 
-      institucionEmisora, 
-      anoEgreso, 
-      tituloAdjuntoUrl 
-    } = req.body;
+    const { institucionEmisora, anoEgreso } = req.body;
 
-    const registro = await ProfesorTitulo.findByPk(id);
-    if (!registro) {
-      return res.status(404).json({ success: false, message: 'Registro no encontrado' });
+    const profesorTitulo = await ProfesorTitulo.findByPk(id);
+    if (!profesorTitulo) {
+      return res.status(404).json({ success: false, message: 'ProfesorTitulo no encontrado' });
     }
 
-    await registro.update({
-      profesor_id,
-      titulo_nomenclador_id,
-      institucionEmisora,
-      anoEgreso,
-      tituloAdjuntoUrl
-    });
+    profesorTitulo.institucionEmisora = institucionEmisora;
+    profesorTitulo.anoEgreso = anoEgreso;
+    await profesorTitulo.save();
 
-    return res.status(200).json({
-      success: true,
-      data: registro
-    });
+    return res.status(200).json({ success: true, data: profesorTitulo });
   } catch (error) {
     return res.status(500).json({ success: false, message: error.message });
   }
 };
+
+// exports.updateProfesorTitulo = async (req, res) => {
+//   try {
+//     const { id } = req.params;
+//     const { 
+//       profesor_id, 
+//       titulo_nomenclador_id, 
+//       institucionEmisora, 
+//       anoEgreso, 
+//       tituloAdjuntoUrl 
+//     } = req.body;
+
+//     const registro = await ProfesorTitulo.findByPk(id);
+//     if (!registro) {
+//       return res.status(404).json({ success: false, message: 'Registro no encontrado' });
+//     }
+
+//     await registro.update({
+//       profesor_id,
+//       titulo_nomenclador_id,
+//       institucionEmisora,
+//       anoEgreso,
+//       tituloAdjuntoUrl
+//     });
+
+//     return res.status(200).json({
+//       success: true,
+//       data: registro
+//     });
+//   } catch (error) {
+//     return res.status(500).json({ success: false, message: error.message });
+//   }
+// };
 
 
 
