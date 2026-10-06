@@ -48,7 +48,8 @@ app.get('/', (req, res) => {
 });
 
 // Inicialización de Base de Datos y Servidor
-sequelize.sync({ alter: true })
+// sequelize.sync({ alter: true })
+sequelize.sync({ force: true })
   .then(() => {
     console.log(' Base de datos PostgreSQL sincronizada exitosamente.');
     app.listen(PORT, () => {

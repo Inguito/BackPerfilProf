@@ -17,8 +17,8 @@ const ProfesorTitulo = sequelize.define('ProfesorTitulo', {
     type: DataTypes.STRING(255)
   }
 }, {
-  tableName: 'profesores_titulos'
-  //timestamps: false,
+   tableName: 'profesores_titulos',
+   timestamps: false, // <-- Desactiva createdAt y updatedAt
   // underscored: true // Mantiene el naming snake_case para las columnas de BD
 });
 
