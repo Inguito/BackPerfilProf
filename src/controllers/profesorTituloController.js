@@ -65,7 +65,7 @@ exports.getProfesorTituloById = async (req, res) => {
   }
 };  
 
-// PUT /api/v1/profesorTitulo/:id
+//PUT /api/v1/profesorTitulo/:id
 // Actualiza un profesorTitulo por id
 // exports.updateProfesorTitulo = async (req, res) => {
 //   try {
