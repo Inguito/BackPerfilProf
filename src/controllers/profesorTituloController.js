@@ -20,28 +20,61 @@ exports.getAllProfesorTitulos = async (req, res) => {
 };  
 
 // POST /api/v1/profesorTitulo
-// Crea un nuevo profesorTitulo
+// Crea un nuevo profesorTitulo la relación entre profesor y titulo
+// exports.createProfesorTitulo = async (req, res) => {
+//   try {
+//     const { 
+//       id, 
+//       profesor_id, 
+//       titulo_nomenclador_id, 
+//       institucionEmisora, 
+//       anoEgreso 
+//     } = req.body;
+//     const newProfesorTitulo = await ProfesorTitulo.create({ 
+//       id,
+//       profesor_id, 
+//       titulo_nomenclador_id, 
+//       institucionEmisora, 
+//       anoEgreso 
+//     });
+//     return res.status(201).json({ success: true, data: newProfesorTitulo });
+//   } catch (error) {
+//     return res.status(500).json({ success: false, message: error.message });
+//   }
+// };
+
 exports.createProfesorTitulo = async (req, res) => {
   try {
-    const { 
-      id, 
-      profesor_id, 
-      titulo_nomenclador_id, 
-      institucionEmisora, 
-      anoEgreso 
+    const {
+      profesor_id,
+      titulo_nomenclador_id,
+      institucionEmisora,
+      anoEgreso,
+      tituloAdjuntoUrl
     } = req.body;
-    const newProfesorTitulo = await ProfesorTitulo.create({ 
-      id,
-      profesor_id, 
-      titulo_nomenclador_id, 
-      institucionEmisora, 
-      anoEgreso 
+
+    const nuevoRegistro = await ProfesorTitulo.create({
+      profesor_id,
+      titulo_nomenclador_id,
+      institucionEmisora,
+      anoEgreso,
+      tituloAdjuntoUrl
     });
-    return res.status(201).json({ success: true, data: newProfesorTitulo });
+
+    return res.status(201).json({
+      success: true,
+      data: nuevoRegistro
+    });
   } catch (error) {
     return res.status(500).json({ success: false, message: error.message });
   }
 };
+
+
+
+
+
+
 
 // GET /api/v1/profesorTitulo/:id
 // Trae un profesorTitulo por id
