@@ -1,32 +1,30 @@
-const { Profesor, TituloNomenclador, Capacitacion, Experiencia, EspacioCurricular } = require('../models');
+const { Profesor, TituloNomenclador, Capacitacion, Experiencia, EspacioCurricular, Habilitacion } = require('../models');
 
 // GET /api/v1/profesores
 exports.getAllProfesores = async (req, res) => 
 {
   try 
   {
-    const profesores = await Profesor.findAll(
-      {
-        include: 
-        [
-          { model: TituloNomenclador, 
-            through: { attributes: ['institucionEmisora', 'anoEgreso'] },
-            
-            // 🔽 ESTA ES LA SENTENCIA A AGREGAR DENTRO DE TituloNomenclador:
-            include: 
-            [
-              { model: EspacioCurricular,
-                through: { attributes: ['tipoHabilitacion'] }
-              }
-            ]
-          },
-          { model: Capacitacion, as: 'capacitaciones' 
-          },
-          { model: Experiencia, as: 'experiencias' 
+   const profesores = await Profesor.findAll({
+  include: [
+    { 
+      model: TituloNomenclador, 
+      through: { attributes: ['institucionEmisora', 'anoEgreso', 'tituloAdjuntoUrl'] },
+      include: [
+        {
+          model: EspacioCurricular,
+          // 🔽 ESTO ES LO QUE LLENA EL OBJETO Habilitacion EN EL JSON:
+          through: { 
+            model: Habilitacion,
+            attributes: ['tipoHabilitacion'] 
           }
-        ]
-      
-      });
+        }
+      ]
+    },
+    { model: Capacitacion, as: 'capacitaciones' },
+    { model: Experiencia, as: 'experiencias' }
+  ]
+});
     return res.status(200).json({ success: true, data: profesores });
   } catch (error) 
   {
