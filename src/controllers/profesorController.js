@@ -9,15 +9,14 @@ exports.getAllProfesores = async (req, res) =>
   include: [
     { 
       model: TituloNomenclador, 
-      through: { attributes: ['institucionEmisora', 'anoEgreso', 'tituloAdjuntoUrl'] },
+      through: { attributes: ['profesor_id', 'titulo_nomenclador_id', 'institucionEmisora', 'anoEgreso'] },
       include: [
         {
           model: EspacioCurricular,
           // 🔽 ESTO ES LO QUE LLENA EL OBJETO Habilitacion EN EL JSON:
           through: { 
             model: Habilitacion,
-            attributes: ['tipoHabilitacion'] 
-          }
+            attributes: ['titulo_nomenclador_id', 'espacio_curricular_id', 'tipoHabilitacion'] }
         }
       ]
     },
