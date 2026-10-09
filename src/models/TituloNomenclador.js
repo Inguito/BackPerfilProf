@@ -1,6 +1,6 @@
 const { DataTypes } = require('sequelize');
 const sequelize = require('../config/database');
-
+// Definición del modelo TituloNomenclador
 const TituloNomenclador = sequelize.define('TituloNomenclador', {
   id: {
     type: DataTypes.INTEGER,
