@@ -36,8 +36,8 @@ const Habilitacion = sequelize.define('Habilitacion', {
   tipoHabilitacion: {
     type: DataTypes.STRING,
     allowNull: false,
-    // field: 'tipo_habilitacion' // Asegúrate de que coincida con el nombre en tu base de datos (snake_case)
-    field: 'tipoHabilitacion' // Asegúrate de que coincida con el nombre en tu base de datos (snake_case)
+    field: 'tipo_habilitacion' // Asegúrate de que coincida con el nombre en tu base de datos (snake_case)
+    // field: 'tipoHabilitacion' // Asegúrate de que coincida con el nombre en tu base de datos (snake_case)
   }
 }, {
   tableName: 'habilitaciones',
