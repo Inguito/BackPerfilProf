@@ -17,13 +17,19 @@ exports.getAllProfesores = async (req, res) =>
         {
           model: EspacioCurricular,
           through: { 
-            model: Habilitacion,
+   //         model: Habilitacion,
             // 🔽 Lo mismo aplica si quieres ver los IDs de la habilitación
             attributes: ['titulo_nomenclador_id', 'espacio_curricular_id', 'tipoHabilitacion'] 
           }
-        }
+        },
+      
       ]
-    }
+    }include: [
+         model: Habilitacion,
+         through: { 
+           attributes: ['titulo_nomenclador_id', 'espacio_curricular_id', 'tipoHabilitacion']
+          } 
+    ] 
   ]
 });
 
