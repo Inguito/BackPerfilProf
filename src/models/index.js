@@ -22,8 +22,17 @@ Carrera.hasMany(EspacioCurricular, { foreignKey: 'carrera_id', as: 'cajaCurricul
 EspacioCurricular.belongsTo(Carrera, { foreignKey: 'carrera_id' });
 
 // Relación N:M entre TituloNomenclador y EspacioCurricular mediante Habilitacion
-TituloNomenclador.belongsToMany(EspacioCurricular, { through: Habilitacion, foreignKey: 'titulo_nomenclador_id' });
-EspacioCurricular.belongsToMany(TituloNomenclador, { through: Habilitacion, foreignKey: 'espacio_curricular_id' });
+// TituloNomenclador.belongsToMany(EspacioCurricular, { through: Habilitacion, foreignKey: 'titulo_nomenclador_id' });
+// EspacioCurricular.belongsToMany(TituloNomenclador, { through: Habilitacion, foreignKey: 'espacio_curricular_id' });
+TituloNomenclador.belongsToMany(EspacioCurricular, {  through: Habilitacion,  foreignKey: 'titulo_nomenclador_id',
+    otherKey: 'espacio_curricular_id' 
+});
+
+EspacioCurricular.belongsToMany(TituloNomenclador, { through: Habilitacion,  foreignKey: 'espacio_curricular_id',
+  otherKey: 'titulo_nomenclador_id' 
+});
+
+
 
 // Relaciones auxiliares del Profesor
 Profesor.hasMany(Capacitacion, { foreignKey: 'profesor_id', as: 'capacitaciones' });

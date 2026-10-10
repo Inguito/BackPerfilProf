@@ -1,4 +1,5 @@
-// const { Profesor, TituloNomenclador, Capacitacion, Experiencia, EspacioCurricular, Habilitacion } = require('../models');
+
+//const { Profesor, TituloNomenclador, Capacitacion, Experiencia, EspacioCurricular, Habilitacion } = require('../models');
 
 // GET /api/v1/profesores
 //  exports.getAllProfesores = async (req, res) => 
@@ -41,9 +42,42 @@
 //   }
 // };
 
+// const { Profesor, TituloNomenclador, Capacitacion, Experiencia, EspacioCurricular, Habilitacion } = require('../models');
+
+// // GET /api/v1/profesores
+// exports.getAllProfesores = async (req, res) => {
+//   try {
+//     const profesores = await Profesor.findAll({
+//       include: [
+//         { 
+//           model: TituloNomenclador, 
+//           through: { 
+//             attributes: ['institucionEmisora', 'anoEgreso'] 
+//           },
+//           include: [
+//             {
+//               model: EspacioCurricular,
+//               through: { 
+//                 // Aquí traemos el campo tipoHabilitacion de la tabla Habilitacion
+//                 attributes: ['tipoHabilitacion'] 
+//               }
+//             }
+//           ] 
+//         },
+//         { model: Capacitacion, as: 'capacitaciones' },
+//         { model: Experiencia, as: 'experiencias' }
+//       ]
+//     });
+
+//     return res.status(200).json({ success: true, data: profesores });
+//   } catch (error) {
+//     return res.status(500).json({ success: false, message: error.message });
+//   }
+// };
+
+
 const { Profesor, TituloNomenclador, Capacitacion, Experiencia, EspacioCurricular, Habilitacion } = require('../models');
 
-// GET /api/v1/profesores
 exports.getAllProfesores = async (req, res) => {
   try {
     const profesores = await Profesor.findAll({
@@ -51,14 +85,15 @@ exports.getAllProfesores = async (req, res) => {
         { 
           model: TituloNomenclador, 
           through: { 
-            attributes: ['institucionEmisora', 'anoEgreso'] 
+            attributes: ['profesor_id', 'titulo_nomenclador_id', 'institucionEmisora', 'anoEgreso'] 
           },
           include: [
             {
               model: EspacioCurricular,
               through: { 
-                // Aquí traemos el campo tipoHabilitacion de la tabla Habilitacion
-                attributes: ['tipoHabilitacion'] 
+                // 🔽 Especificamos explícitamente el modelo Habilitacion y sus atributos
+                model: Habilitacion,
+                attributes: ['titulo_nomenclador_id', 'espacio_curricular_id', 'tipoHabilitacion'] 
               }
             }
           ] 
@@ -73,6 +108,8 @@ exports.getAllProfesores = async (req, res) => {
     return res.status(500).json({ success: false, message: error.message });
   }
 };
+
+
 
 
 
