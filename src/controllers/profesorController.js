@@ -1,7 +1,7 @@
 const { Profesor, TituloNomenclador, Capacitacion, Experiencia, EspacioCurricular, Habilitacion } = require('../models');
 
 // GET /api/v1/profesores
-exports.getAllProfesores = async (req, res) => 
+// exports.getAllProfesores = async (req, res) => 
 {
   try 
   {
@@ -21,12 +21,11 @@ exports.getAllProfesores = async (req, res) =>
             attributes: ['titulo_nomenclador_id', 'espacio_curricular_id', 'tipoHabilitacion'] 
           }
         },
-        {model: Habilitacion,
-            through: { 
-              attributes: ['titulo_nomenclador_id', 'espacio_curricular_id', 'tipoHabilitacion']
-            } 
-          
-        }
+        // {model: Habilitacion,
+        //     through: { 
+        //       attributes: ['titulo_nomenclador_id', 'espacio_curricular_id', 'tipoHabilitacion']
+        //     } 
+        // }
       ]
       }
     ] 
