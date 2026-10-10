@@ -67,9 +67,9 @@ const Habilitacion = sequelize.define('Habilitacion', {
   tipoHabilitacion: { 
 // type: DataTypes.ENUM('Docente', 'Habilitante', 'Supletorio'), 
     type: DataTypes.STRING(50), // Cambiado a STRING con longitud máxima de 50 caracteres
-    defaultValue: 'Docente',
-    allowNull: false,
-    field: 'tipoHabilitacion' // Asegúrate de que coincida con el nombre de la columna en la BD si usa snake_case
+//    defaultValue: 'Docente',
+//    allowNull: false,
+//    field: 'tipoHabilitacion' // Asegúrate de que coincida con el nombre de la columna en la BD si usa snake_case
   }
 }, { 
   tableName: 'habilitaciones',
