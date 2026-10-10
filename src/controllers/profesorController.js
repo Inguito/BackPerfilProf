@@ -1,45 +1,80 @@
+// const { Profesor, TituloNomenclador, Capacitacion, Experiencia, EspacioCurricular, Habilitacion } = require('../models');
+
+// GET /api/v1/profesores
+//  exports.getAllProfesores = async (req, res) => 
+// {
+//   try 
+//   {
+//    const profesores = await Profesor.findAll({
+//   include: [
+//     { 
+//       model: TituloNomenclador, 
+//       through: { 
+//         // 🔽 Agrega los campos de claves foráneas aquí para que se muestren en el JSON
+//         attributes: ['profesor_id', 'titulo_nomenclador_id', 'institucionEmisora', 'anoEgreso'] 
+//       },
+//       include: [
+//         {model: EspacioCurricular,
+//           through: { 
+//    //         model: Habilitacion,
+//             // 🔽 Lo mismo aplica si quieres ver los IDs de la habilitación
+//             attributes: ['titulo_nomenclador_id', 'espacio_curricular_id', 'tipoHabilitacion'] 
+//           },
+//           include: [
+//             {model: Habilitacion,
+//                 through: { 
+//                   attributes: ['titulo_nomenclador_id', 'espacio_curricular_id', 'tipoHabilitacion']
+//                 } 
+//             }
+//           ]
+//         }
+//      ] 
+//    }
+//   ]
+//   }
+// );
+
+//     return res.status(200).json({ success: true, data: profesores });
+//   } catch (error) 
+//   {
+//     return res.status(500).json({ success: false, message: error.message });
+//   }
+// };
+
 const { Profesor, TituloNomenclador, Capacitacion, Experiencia, EspacioCurricular, Habilitacion } = require('../models');
 
 // GET /api/v1/profesores
- exports.getAllProfesores = async (req, res) => 
-{
-  try 
-  {
-   const profesores = await Profesor.findAll({
-  include: [
-    { 
-      model: TituloNomenclador, 
-      through: { 
-        // 🔽 Agrega los campos de claves foráneas aquí para que se muestren en el JSON
-        attributes: ['profesor_id', 'titulo_nomenclador_id', 'institucionEmisora', 'anoEgreso'] 
-      },
+exports.getAllProfesores = async (req, res) => {
+  try {
+    const profesores = await Profesor.findAll({
       include: [
-        {model: EspacioCurricular,
+        { 
+          model: TituloNomenclador, 
           through: { 
-   //         model: Habilitacion,
-            // 🔽 Lo mismo aplica si quieres ver los IDs de la habilitación
-            attributes: ['titulo_nomenclador_id', 'espacio_curricular_id', 'tipoHabilitacion'] 
+            attributes: ['institucionEmisora', 'anoEgreso'] 
           },
           include: [
-            {model: Habilitacion,
-                through: { 
-                  attributes: ['titulo_nomenclador_id', 'espacio_curricular_id', 'tipoHabilitacion']
-                } 
+            {
+              model: EspacioCurricular,
+              through: { 
+                // Aquí traemos el campo tipoHabilitacion de la tabla Habilitacion
+                attributes: ['tipoHabilitacion'] 
+              }
             }
-          ]
-        }
-     ] 
-   }
-  ]
-  }
-);
+          ] 
+        },
+        { model: Capacitacion, as: 'capacitaciones' },
+        { model: Experiencia, as: 'experiencias' }
+      ]
+    });
 
     return res.status(200).json({ success: true, data: profesores });
-  } catch (error) 
-  {
+  } catch (error) {
     return res.status(500).json({ success: false, message: error.message });
   }
 };
+
+
 
 // GET /api/v1/profesores/:id
 exports.getProfesorById = async (req, res) => {
