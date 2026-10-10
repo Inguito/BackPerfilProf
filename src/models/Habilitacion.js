@@ -56,14 +56,14 @@ const Habilitacion = sequelize.define('Habilitacion', {
     primaryKey: true, 
     autoIncrement: true 
   },
-  titulo_nomenclador_id: {
-    type: DataTypes.INTEGER,
-    allowNull: false
-  },
-  espacio_curricular_id: {
-    type: DataTypes.INTEGER,
-    allowNull: false
-  },
+  // titulo_nomenclador_id: {
+  //   type: DataTypes.INTEGER,
+  //   allowNull: false
+  // },
+  // espacio_curricular_id: {
+  //   type: DataTypes.INTEGER,
+  //   allowNull: false
+  // },
   tipoHabilitacion: { 
 // type: DataTypes.ENUM('Docente', 'Habilitante', 'Supletorio'), 
     type: DataTypes.STRING(50), // Cambiado a STRING con longitud máxima de 50 caracteres
