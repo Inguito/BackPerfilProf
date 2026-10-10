@@ -67,12 +67,12 @@ const Habilitacion = sequelize.define('Habilitacion', {
   tipoHabilitacion: { 
     type: DataTypes.ENUM('Docente', 'Habilitante', 'Supletorio'), 
     defaultValue: 'Docente',
-    field: 'tipo_habilitacion' // Asegúrate de que coincida con el nombre de la columna en la BD si usa snake_case
+    field: 'tipoHabilitacion' // Asegúrate de que coincida con el nombre de la columna en la BD si usa snake_case
   }
 }, { 
   tableName: 'habilitaciones',
-  timestamps: true,
-  underscored: true
+  timestamps: false, // Si no quieres timestamps, puedes ponerlo en false
+  //underscored: true // Esto asegura que los nombres de las columnas sean en snake_case
 });
 
 module.exports = Habilitacion;
