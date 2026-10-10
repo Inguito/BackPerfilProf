@@ -1,7 +1,7 @@
 const { Profesor, TituloNomenclador, Capacitacion, Experiencia, EspacioCurricular, Habilitacion } = require('../models');
 
 // GET /api/v1/profesores
-// exports.getAllProfesores = async (req, res) => 
+ exports.getAllProfesores = async (req, res) => 
 {
   try 
   {
