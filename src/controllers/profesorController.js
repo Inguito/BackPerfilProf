@@ -14,23 +14,22 @@ exports.getAllProfesores = async (req, res) =>
         attributes: ['profesor_id', 'titulo_nomenclador_id', 'institucionEmisora', 'anoEgreso'] 
       },
       include: [
-        {
-          model: EspacioCurricular,
+        {model: EspacioCurricular,
           through: { 
    //         model: Habilitacion,
             // 🔽 Lo mismo aplica si quieres ver los IDs de la habilitación
             attributes: ['titulo_nomenclador_id', 'espacio_curricular_id', 'tipoHabilitacion'] 
           }
         },
-      
+        {model: Habilitacion,
+            through: { 
+              attributes: ['titulo_nomenclador_id', 'espacio_curricular_id', 'tipoHabilitacion']
+            } 
+          
+        }
       ]
-    }include: [
-         model: Habilitacion,
-         through: { 
-           attributes: ['titulo_nomenclador_id', 'espacio_curricular_id', 'tipoHabilitacion']
-          } 
+      }
     ] 
-  ]
 });
 
     return res.status(200).json({ success: true, data: profesores });
