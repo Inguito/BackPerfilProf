@@ -9,21 +9,23 @@ exports.getAllProfesores = async (req, res) =>
   include: [
     { 
       model: TituloNomenclador, 
-      through: { attributes: ['profesor_id', 'titulo_nomenclador_id', 'institucionEmisora', 'anoEgreso'] },
+      through: { 
+        // 🔽 Agrega los campos de claves foráneas aquí para que se muestren en el JSON
+        attributes: ['profesor_id', 'titulo_nomenclador_id', 'institucionEmisora', 'anoEgreso'] 
+      },
       include: [
         {
           model: EspacioCurricular,
-          // 🔽 ESTO ES LO QUE LLENA EL OBJETO Habilitacion EN EL JSON:
           through: { 
-            model: Habilitacion,
-            attributes: ['titulo_nomenclador_id', 'espacio_curricular_id', 'tipoHabilitacion'] }
+            // 🔽 Lo mismo aplica si quieres ver los IDs de la habilitación
+            attributes: ['titulo_nomenclador_id', 'espacio_curricular_id', 'tipoHabilitacion'] 
+          }
         }
       ]
-    },
-    { model: Capacitacion, as: 'capacitaciones' },
-    { model: Experiencia, as: 'experiencias' }
+    }
   ]
 });
+
     return res.status(200).json({ success: true, data: profesores });
   } catch (error) 
   {
