@@ -15,11 +15,11 @@ const { Profesor, TituloNomenclador, Capacitacion, Experiencia, EspacioCurricula
       },
       include: [
         {model: EspacioCurricular
-  //         through: { 
-  //  //         model: Habilitacion,
-  //           // 🔽 Lo mismo aplica si quieres ver los IDs de la habilitación
-  //           attributes: ['titulo_nomenclador_id', 'espacio_curricular_id', 'tipoHabilitacion'] 
-  //         }
+          through: { 
+   //         model: Habilitacion,
+            // 🔽 Lo mismo aplica si quieres ver los IDs de la habilitación
+            attributes: ['titulo_nomenclador_id', 'espacio_curricular_id', 'tipoHabilitacion'] 
+          }
         },
         // {model: Habilitacion,
         //     through: { 
