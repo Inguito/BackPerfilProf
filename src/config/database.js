@@ -1,5 +1,5 @@
 const { Sequelize } = require('sequelize');
-require('dotenv').config();
+require('dotenv').config(); // Cargar variables de entorno desde .env
 
 // En Render, la conexión suele pasarse en una única URL (DATABASE_URL)
 const isProduction = process.env.NODE_ENV === 'production';

@@ -93,13 +93,14 @@ exports.getAllProfesores = async (req, res) => {
               through: { 
                 // 🔽 Especificamos explícitamente el modelo Habilitacion y sus atributos
                 model: Habilitacion,
-                attributes: ['titulo_nomenclador_id', 'espacio_curricular_id', 'tipoHabilitacion'] 
+                //attributes: ['titulo_nomenclador_id', 'espacio_curricular_id', 'tipoHabilitacion'] 
               }
             }
           ] 
-        },
-        { model: Capacitacion, as: 'capacitaciones' },
-        { model: Experiencia, as: 'experiencias' }
+        } 
+        //,
+//        { model: Capacitacion, as: 'capacitaciones' },
+//        { model: Experiencia, as: 'experiencias' }
       ]
     });
 
