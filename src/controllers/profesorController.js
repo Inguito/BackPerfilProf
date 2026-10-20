@@ -85,7 +85,7 @@ exports.getAllProfesores = async (req, res) => {
         { 
           model: TituloNomenclador, 
           through: { 
-            attributes: ['profesor_id', 'titulo_nomenclador_id', 'institucionEmisora', 'anoEgreso'] 
+            attributes: ['institucionEmisora', 'anoEgreso'] 
           },
           include: [
             {
